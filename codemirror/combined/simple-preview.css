@@ -27,7 +27,12 @@ body, .container {
 textarea, .CodeMirror {
   font: normal 15px Monospace;
   padding: 6px;
+  height: 100%;
   }
+.CodeMirror pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 iframe {
   border-left: none;
   }
