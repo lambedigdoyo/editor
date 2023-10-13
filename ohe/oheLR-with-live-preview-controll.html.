@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online HTML Editor: Real time online with preview</title>
+ ​ <meta charset="utf-8">
+  ​<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href=../src/css/gr-reset.css rel=stylesheet />
+<link rel="image/x-icon" href="src/images/vector.png" sizes="any">
+
+<script>var taID = 'taEd';</script>
+<script src=src/js/grQtags.js></script>
+
+<script src=../src/js/textarea-attr.js></script>
+<script src=../src/js/clipboardDivTooltip.js></script>
+<script>
+function $_(id) { return document.getElementById(id); }
+
+var delay;
+var taVal = '';
+function updateEd() {
+var tA = $_("taEd");
+var fPrev = $_("ifrPrev");
+  if (taVal != tA.value) {
+    taVal = tA.value;
+var fw = (fPrev.contentWindow) ? fPrev.contentWindow : (fPrev.contentDocument.document) ? fPrev.contentDocument.document : fPrev.contentDocument;
+  fw.document.open();
+  fw.document.write(taVal);  
+  fw.document.close();  
+  }
+  toggleLivePrev(); 
+}
+function toggleLivePrev() {
+if (!$_("toggleLivePrev").checked) return;
+  clearTimeout(delay);
+  delay = setTimeout(updateEd, 200);
+};
+updateEd();
+  tA.oninput = toggleLivePrev;
+  updateEd();
+</script>
+
+
+<style>
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after { box-sizing: inherit; }
+html, body, .navbar, .taEd-box, .ifrPrev-box, #taEd, #ifrPrev {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none!important;
+}
+body {
+  overflow: hidden;
+  height: 100vh;
+  font-size: 0;
+  background-color: #555; 
+}
+.navbar {
+  position: fixed; 
+  top: 0; 
+  right: 0; 
+  height: 50px; 
+  padding: 2px; 
+  clear: both;
+  background-color: #3A0C0C; background-color: #555;
+  z-index: 3; 
+}
+.toolBar {
+  height: 46px;
+  padding: 1px  2px 2px;
+  float: left; 
+  width: 50%;
+}
+
+.container {
+  position: relative;
+  top: 51px;
+  width: 100%;
+  height: calc(100% - 51px);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 5px;
+  background-color: #555;
+  font-size: 100%; 
+}
+.taEd-box, .ifrPrev-box {
+  height: 100%;
+  width: 100%;
+}
+#taEd, #ifrPrev {
+  height: 100%;
+}
+#taEd {
+  ​background-color: #ccd6d6; background-color: #FEF8EB;
+  padding: 6px;
+  font: normal 15px Monospace;
+  resize: none;
+}
+#ifrPrev {
+  background-color: #fff; 
+}
+input, button, span {
+  font: normal 13px Arial;
+}
+#edOHE .x_button {
+  padding: 1px 2px; 
+  font-size: 12px;
+}
+#x_italic_taEd {
+  font-style: italic; 
+}
+#x_bold_taEd {
+  font-weight: bold; 
+}
+#x_h1_taEd { 
+  font-weight:bold;
+}
+#x_h2_taEd {
+  font-weight:bold; }
+#x_h3_taEd { 
+  font-weight: bold;
+}
+#x_h4_taEd {
+  font-weight: bold; 
+}
+#x_link_taEd {
+  color:blue; 
+  text-decoration: underline;
+}
+#edOHE #x_extra_show_taEd, #edOHE #x_extra_hide_taEd {
+  background-color: red;
+  padding: 0 5px 2px;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: bolder;
+  float: left;
+}
+#edOHE { 
+  background: rgba(152,100,46,0.5);
+  padding: 2px 6px 2px; 
+  border: 1px solid #777;
+  z-index: 4;
+}
+#x_edOHE_taEd:hover { 
+  z-index: 4;
+}
+#edOHE input { 
+  margin-right: 2px;
+  border: 1px solid #bbb;
+  margin-top: 2px;
+  font-size: 13px;
+  border-radius: 3px;
+  background-color: brown;
+  color: #fff;
+}
+#edOHE input:hover {
+  background-color: #ccc;
+  color: #ACFAF2;
+  text-shadow: 1px 1px 1px #000;
+  box-shadow: inset 4px 4px 16px #000,  inset -4px -4px 16px #000;
+  border-color: #eee;
+}
+.toolBar input, .toolBar button, #save, a .btnx, .btnx{ 
+  font: normal 12px Arial;
+  letter-spacing: -0.5px;
+  float: left;
+  margin: 0 2px 2px 0;
+}
+a .btnx, #save, .btnx {
+  display: inline-block;
+  background-color: #eaeaea;
+  border: 1px solid #888;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+#save:hover, span.iconBox:hover, .btnx:hover {
+  background-color: brown;
+  color: #fff;
+}
+.bar button { 
+  margin: 0 2px 2px 0;  
+}
+span.iconBox {
+  font-size: 18px;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background: #eaeaea;
+  border: 1px solid #666;
+  margin-right: 2px;
+}
+</style>
+
+<style>
+.hideBox span:hover { cursor: pointer; }
+table {
+  border-collapsible: separate;
+  float: left;
+  padding: 10px;
+  border:3px double #666;
+  background: #eee;
+  width: 365px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.8); 
+  color: #000;
+}
+table td, table td input, table td button{
+  text-align:left;
+  font:12px Arial;
+  max-width: 275px;
+  overflow:hidden; 
+}
+</style>
+
+</head>
+
+<body onload='allTT(); updateEd()'/>
+
+<script>var ta_ID = document.getElementById("taEd");</script>
+
+<div id=navbar class=navbar>
+<div class=toolBar>
+<input type=checkbox id=toggleLivePrev checked onclick='updateEd()' onmouseover='show("Toggle LivePreview (on/off)")' style='transform: scale(1.35) translate(-1px, 2px); margin: 0 6px 0 8px;' />
+<button onclick='selectEd()' onmouseover='show("Select all")'>Select</button>
+<button onclick='clearEd()' onmouseover='show("Clear all")'>CLEAR</button>
+<button onclick='iT("")' onmouseover='show("Select text to Delete")'>Delete</button>
+<button onclick='copySelEd()' onmouseover='show("Select text and Copy")'>COPY</button>
+<button onclick='iT(targetCopas)' onmouseover='show("Paste to Editor only")'>PASTE</button>
+<button onclick='resetEd()' onmouseover='show("Reset Editor")'>Reset-Ed</button>
+<button onclick='resetFrame(); updateEd()' style="font-size: 12px; padding: 0 4px;" onmouseover='show("Show/Reset Preview")'>&#9654;</button>
+<button onclick='toggleWrap()' onmouseover='show("Toggle Line Wrapping")'>WRAP</button>
+<button onclick='location.reload(true)' onmouseover='show("Reload Editor")'>Reload</button>
+<hr />
+
+
+<a class='but' href=.? onclick="NewWindow(this.href,'gr-Folder','800','600','yes','center');return false" onfocus="this.blur();  hide();"><span class=btnx onmouseover='show("Open Folder: D")'>Folder: D</span></a>
+<a class='but' style='line-height: 24px;' href=file:///E:/GR/ onclick="NewWindow(this.href,'gr-Folder','800','600','yes','center'); return false; hide();" onfocus="this.blur()"><span id=btnxx class='btnx' onmouseover='show("Open Folder: E")'>Folder: E</span></a>
+<span class='btnx curp' onclick='togglePrev(); updateEd()' onMouseover='show("Preview in PopUp Window")'>Window Preview</span>
+  <span id=undo class='btnx curp' onmouseover='show("Click to Undo")'>UNDO</span> 
+  <span id=redo class='btnx curp' onMouseover='show("Click to Redo")'>REDO</span>
+  <span id=save class='btnx curp' onMouseover='show("Save for Undo Redo")' style='display: none'>Save</span>
+<!-- </div> -->
+<span class='iconBox accordion curp' onmouseover='show("Save or Load File");'><i class=menuIcon onclick='hide()'><svg class="svg-icon" style="width: 1.015625em; height: 1em; transform: scale(0.72) translate(0, -1px); ; vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1040 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M938.80757 410.549473l-81.94081 80.380033-278.598755-273.136035v545.881875H462.18519V217.988569l-279.639274 273.136034L101.190398 410.549473 520.259113 0z"  /><path d="M1040.518227 1024H0v-377.187857h115.627588v263.251111h809.263051V647.00724H1040.518227z"  /></svg></i></span>
+    ​<div class="hideBox" style="left: 250px; top: 50px;">
+        ​<table class="tabel">
+          ​<tr>
+	    <td>Browse :</td>
+	    <td><input class='dd_tooltip' type="file"/* onchange="loadfile(this)"*/ onmouserover="Select to load your file!"></td>
+          ​</tr>
+          ​<tr>
+          ​</tr>
+          ​<tr>
+	    <td>Save as : </td>
+	    <td><input type="text" id="idSave" placeholder="file-name"/></td>
+	    <td><button class="save"/* onclick="saveFile()"*/ id="saveBut" style="margin-left: 3px;" enable="true">Save</button></td>
+          ​</tr>
+        ​</table>
+ ​   </div>
+
+<span class='iconBox accordion curp' onmouseover='show("Click to show Color Picker");'><i class=menuIcon onclick='hide()'><svg class="svg-icon" style="width: 1em; transform: scale(0.9); height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1037 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M168.910848 577.874944m-28.672 0a28 28 0 1 0 57.344 0 28 28 0 1 0-57.344 0Z"  /><path d="M229.326848 433.05472m-44.964864 0a43.911 43.911 0 1 0 89.929728 0 43.911 43.911 0 1 0-89.929728 0Z"  /><path d="M408.513536 315.220992m-58.020864 0a56.661 56.661 0 1 0 116.041728 0 56.661 56.661 0 1 0-116.041728 0Z"  /><path d="M642.842624 315.220992m-72.868864 0a71.161 71.161 0 1 0 145.737728 0 71.161 71.161 0 1 0-145.737728 0Z"  /><path d="M1012.110336 244.247552l-0.77312-0.671744c-10.673152-9.270272-26.843136-8.132608-36.113408 2.541568L589.09696 690.716672l-48.813056 95.97952 87.571456-60.961792 386.797568-445.37344C1023.9232 269.686784 1022.784512 253.5168 1012.110336 244.247552z"  /><path d="M945.957888 491.52c-13.732864 0-24.981504 10.60352-26.02496 24.06912l-0.086016-0.006144c0 0-36.182016 191.830016-193.878016 294.228992-170.133504 110.475264-364.883968 60.75904-401.06496-3.069952-19.881984-35.075072-50.176-94.208-67.412992-108.545024-46.288896-38.500352-163.328 14.848-187.904-43.52-45.676544-108.48256 62.123008-389.632 329.387008-459.264 186.98752-49.563648 346.205184 10.143744 426.067968 76.672l0-0.01024c4.4288 3.77856 10.171392 6.065152 16.449536 6.065152 14.00832 0 25.363456-11.355136 25.363456-25.363456 0-8.409088-4.094976-15.858688-10.397696-20.473856C822.82496 204.030976 610.65728 41.769984 314.32192 174.932992c-323.584 145.408-344.064 448.512-276.48 524.288s166.500352 15.837184 188.416 40.96c13.995008 16.043008 32.228352 58.630144 56.148992 97.281024 34.644992 55.977984 207.919104 173.529088 472.23296 16.723968 158.611456-94.096384 215.380992-310.782976 217.428992-334.505984l-0.08704-0.007168c0.052224-0.673792 0.08704-1.353728 0.08704-2.040832C972.069888 503.211008 960.37888 491.52 945.957888 491.52z"  /></svg></i></span>
+    <div class="hideBox" style="left: 250px; top: 50px;">
+<iframe id="cp" src="../../color-picker/main/mozCP/mozCP-for-editor.html" style="height: 285px; width:260px; z-index: 2;"></iframe>
+    </div>
+
+</div>
+<div style="width: 49.7%; float: right;">
+<script>edOHE('taEd');</script>
+</div>
+</div>
+
+<div class='container'>
+
+
+<div class='taEd-box'>
+
+<textarea id="taEd" name="taEd" spellcheck=false wrap=logical><!DOCTYPE html>
+<html>
+<head>
+  <title>Online HTML Editor: Real time online with preview</title>
+ ​ <meta charset="utf-8">
+  ​<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="src/images/vector.ico" sizes="any">
+
+
+</head>
+<body>
+
+<h2>Welcome to the HTML editor!</h2>
+<p>Just type the HTML and it will be shown below.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum neque id magna. Mauris sollicitudin nisi sit amet sem. Etiam sit amet lectus a velit interdum facilisis. Vestibulum ante ipsum primis in faucibus orci &lt;strong&gt;luctus et ultrices posuere&lt;/strong&gt; cubilia Curae; In tincidunt eleifend neque. Maecenas interdum, neque in fringilla pellentesque, lacus massa eleifend elit, nec scelerisque nulla orci a nunc. Quisque sollicitudin. Sed pulvinar lacus id lacus. Vestibulum imperdiet tellus eget risus. Quisque libero nisl, feugiat eu, euismod at, elementum eget, tellus.</p>
+<img src="src/images/big/google.gif" alt="Google logo" />
+<p>Phasellus sem odio, varius quis, cursus at, ullamcorper eget, turpis. Maecenas a mi. Mauris dignissim lectus malesuada odio. Duis elit arcu, lobortis ut, porta ac, venenatis ornare, odio.</p>
+
+</body>
+</html></textarea>
+
+</div>
+
+<div class="ifrPrev-box">
+<iframe name="ifrPrev" id="ifrPrev" src="javascript:\'-\'" allow="fullscreen" referrerpolicy="no-referrer"></iframe>
+</div>
+
+</div>
+
+<script>
+var tA = $_("taEd");
+function selectEd() {
+  tA.select();
+}
+function clearEd() {
+  tA.value = '';
+}
+function resetEd() {    
+  if (!tA.value || tA.value != tA.defaultValue && confirm('Are you sure?')) {
+    tA.value = tA.defaultValue;
+  }
+}
+function resetFrame() {
+  tA.value = tA.value + " "; 
+}
+
+divTooltip();
+function copySelEd() {
+  tA.focus();
+  var s = tA.selectionStart;
+  var e = tA.selectionEnd;
+  targetCopas = tA.value.substring(s, e);
+  targetCopas = targetCopas;//.replace(/\n/g, "\r\n");
+  if (targetCopas.length > 0) {
+    navigator.clipboard.writeText(targetCopas);
+    clipboardTooltip();
+  } 
+}
+
+/*  ======================= BROWSE -- SAVE =====================  */
+var input = document.querySelector("input[type=file]"); 
+var button = $_("saveBut");
+var fileName;
+input.oninput = function(e) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    tA.value = event.target.result;
+    button.disabled = false;
+  }
+  fileName = e.target.files[0].fileName;
+  reader.readAsText(new Blob([e.target.files[0]], {
+    "type": "text/plain"
+  }));
+}
+
+button.onclick = function(e) {
+var textVal =  tA.value; 
+textVal = textVal.replace(/\n/g, "\r\n");
+  e.preventDefault(); // "type": "application/json"
+  var blob = new Blob([textVal], {
+    type: "text/plain"
+  });
+var  fileNames = document.getElementById("idSave").value;
+var namaFile = fileNames;
+  var a = document.createElement("a");
+  a.download = namaFile; //name;
+  a.href = URL.createObjectURL(blob);
+  document.body.appendChild(a);
+  a.click();
+  input.value = "";
+  button.disabled = true;
+  document.body.removeChild(a);
+}
+/* ===================== BROWSE -- SAVE =====================  */
+
+//=========== TOGGLE WRAP =======
+function toggleWrap() { 
+  if (tA.style.whiteSpace === "pre") {
+    tA.style.whiteSpace = "pre-wrap";
+  } else {
+        tA.style.whiteSpace = "pre";
+  }
+}
+</script>
+
+<script>
+function updateSelect() {
+  updateEd(); 
+  tA.select();
+}
+updateSelect()
+</script>
+
+<script src=../src/js/togglePrev-PopUp.js></script>
+<script src=../src/js/new-window.js></script>
+<script src=../src/js/taID-iT.js></script>
+<script src=../src/js/taID-undoRedoSave.js></script>
+<script src=../src/js/taID-autoSpace.js></script>
+<script src=../src/js/accordion-js-css.js></script>
+<script src=../src/js/gr-dd-Tooltip.js></script>
+<!-- to use tooltips: onmouseover='show("Tooltip")';-->
+
+</body>
+</html
+ 
