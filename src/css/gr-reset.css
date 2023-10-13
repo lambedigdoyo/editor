@@ -1,0 +1,31 @@
+﻿/* gr-reset.css 04-Juli-2022 */
+html { box-sizing: border-box } * , *:before, *:after { box-sizing: inherit }
+html { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100% }
+html, body { padding: 0; margin: 0; width: 100%; height: 100%; }
+textarea, input, button, iframe { outline: none!important; resize: none; }
+input, button, ul li span, audio, canvas, progress, video { display: inlini-block; font: normal 14px Arial; }
+a, a:link { background-color: transparent; text-decoration: none; color: inherit; }
+a:active, a:hover { outline-width: 0}
+abbr[title]{ border-bottom: none; text-decoration: underline; text-decoration: underline dotted; }
+hr { padding: 0; margin: 5px auto; border: none; width: 100%; clear: both; box-sizing: content-box; height:0; overflow: visible; }
+audio, canvas, progress, video { display: inline-block }
+progress{ vertical-align: baseline; }
+button, input { overflow: visible; }
+button, select { text-transform: none; }
+button, [type=button], [type=reset], [type=submit] { -webkit-appearance: button; }
+a:hover, a:link:hover, button:hover, [type=button]:hover, [type=reset]:hover, [type=submit]:hover { cursor: pointer; } 
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner { border-style: none; padding: 0; }
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring { outline: 1px dotted ButtonText; }
+[type=checkbox], [type=radio] { padding: 0; }
+[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
+[type=search] {-webkit-appearance: textfield; outline-offset:-2px; }
+[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+::-webkit-file-upload-button{-webkit-appearance: button; font: inherit; }
+textarea, iframe, pre, hr, article, aside, details, figcaption, figure, footer, header, main, menu, nav, section { display: block; }
+textarea, iframe, pre { width: inherit; padding: 8px; font: normal 15px Monospace; margin: 0 auto 0; border: 1px solid #888; background: #fff; cursor: auto!important; }
+iframe { padding: 0; border: none; }
+main, .container, .container10, .container20 { width: 100%; height: 100%; margin: 0; padding: 0; }
+main, .container10 { padding: 10px; } .container20 { padding: 20px; }
+.ovh { overflow: hidden; } .ova { overflow: scroll; overflow: auto; } .ovyh { overflow-y: hidden; } .ovxh { overflow-x: hidden; }
+.tac { text-align: center; } .tal { text-align: left; } .tar { text-align: right; }
+.curp:hover { cursor: pointer; }
