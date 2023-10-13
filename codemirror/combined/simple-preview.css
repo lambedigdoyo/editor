@@ -1,0 +1,33 @@
+﻿html {
+  box-sizing: border-box;
+  }
+*, *:before, *:after {
+  box-sizing: inherit;
+  }
+html, body, .container, .CodeMirror, iframe {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  }
+.container, .CodeMirror, textarea, iframe {
+  display: block;
+  float: left;
+  background: #fff;
+  outline: none!important;
+}
+body, .container { 
+  overflow: hidden; 
+  }
+.CodeMirror, iframe {
+  width: 50%;
+  border: 1px solid black;
+  }
+textarea, .CodeMirror {
+  font: normal 15px Monospace;
+  padding: 6px;
+  }
+iframe {
+  border-left: none;
+  }
